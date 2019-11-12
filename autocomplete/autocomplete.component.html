@@ -1,0 +1,22 @@
+<ng-container *ngIf="_options.length > 0; else noOptionsTemplate">
+  <mat-form-field class="full-width">
+    <input type="text" matInput [placeholder]="completePlaceholder" [formControl]="control" [matAutocomplete]="auto" />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [displayWith]="getLabelName.bind(this)"
+      (optionSelected)="selectionChange ? selectionChange($event) : null"
+    >
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.value" [title]="option.label">
+        {{ option.label }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error>
+      <app-input-error-messages [control]="control"></app-input-error-messages>
+    </mat-error>
+  </mat-form-field>
+</ng-container>
+<ng-template #noOptionsTemplate>
+  <mat-form-field class="full-width">
+    <input type="text" matInput [placeholder]="completePlaceholder" [formControl]="dummyControl" />
+  </mat-form-field>
+</ng-template>
