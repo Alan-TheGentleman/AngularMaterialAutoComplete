@@ -1,0 +1,50 @@
+<ng-container *ngIf="_allOptions.length > 0; else noOptionsTemplate">
+  <mat-form-field class="full-width">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let option of options" [selectable]="selectable" [removable]="removable" (removed)="remove(option)">
+        {{ option }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input
+        [placeholder]="completePlaceholder"
+        #chipsInput
+        [formControl]="dummyControl"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-error>
+      <app-input-error-messages [control]="control"></app-input-error-messages>
+    </mat-error>
+  </mat-form-field>
+</ng-container>
+<ng-template #noOptionsTemplate>
+  <mat-form-field class="full-width">
+    <mat-chip-list #chipList>
+      <mat-chip *ngFor="let option of options" [selectable]="selectable" [removable]="removable" (removed)="remove(option)">
+        {{ option }}
+        <mat-icon matChipRemove>cancel</mat-icon>
+      </mat-chip>
+      <input
+        [placeholder]="completePlaceholder"
+        #chipsInput
+        [formControl]="dummyControl"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      />
+    </mat-chip-list>
+    <mat-error>
+      <app-input-error-messages [control]="control"></app-input-error-messages>
+    </mat-error>
+  </mat-form-field>
+</ng-template>
