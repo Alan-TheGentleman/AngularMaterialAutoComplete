@@ -1,6 +1,6 @@
 # Angular Material AutoComplete and ChipsAutoComplete
 
-## This are custom angular material components, you still need to add angular material module to your application for this to work.
+## This are custom angular material components, you still need to add angular material module to your application for this to work, also remember to add the ValidationService into your app or shared module.
 
 ### How to use:
 
@@ -19,7 +19,8 @@ import { AngularMaterialsModule } from './angular-materials-module';
     AngularMaterialsModule,
     AutoCompleteComponent,
     ChipsComponent
-  ]
+  ],
+  providers: [ValidationService]
 })
 export class SharedModule {}
 ```
