@@ -98,4 +98,4 @@ Example:
 ></app-chips>
 ```
 
-You can use the chips componente without options ! this way you can add what ever you want as chips :)
+You can use the chips component without options ! this way you can add what ever you want as chips :)
